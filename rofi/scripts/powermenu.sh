@@ -4,7 +4,7 @@
 lock=""
 logout=""
 shutdown=""
-reboot=""
+reboot=""
 sleep=""
 
 # Get answer from user via rofi
