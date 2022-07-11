@@ -1,0 +1,10 @@
+configuration {
+  modi: "window,ssh,drun,run,filebrowser";
+  terminal: "/usr/bin/kitty";
+}
+
+//@theme "/home/spot/.local/share/rofi/themes/rounded-purple-dark.rasi"
+//@theme "/usr/share/rofi/themes/Monokai.rasi"
+//@theme "/home/spot/.local/share/rofi/themes/windows11-list-dark.rasi"
+//@theme "/home/spot/.local/share/rofi/themes/windows11-list-dark.rasi"
+@theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
