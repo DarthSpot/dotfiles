@@ -40,7 +40,6 @@ workspaces = [
         "matches": [
             Match(wm_class="slack"),
             Match(wm_class="discord"),
-            Match(wm_class="srain"),
         ],
         "lay": "bsp",
     },
@@ -212,7 +211,7 @@ def toggle_notif_center():
 
 # Mouse_callback functions
 def open_launcher():
-    qtile.cmd_spawn("rofi -show drun")
+    qtile.cmd_spawn("rofi -show drun -show-icons")
 
 
 def kill_window():
