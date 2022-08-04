@@ -1,0 +1,177 @@
+# ============================================================
+#                                            SUPER + NON-ALPHA
+# ============================================================
+
+super + {Left,Down,Up,Right}
+        bspc node -f {west,south,north,east}
+
+# Focus different desktops depending on which monitor is in focus
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# terminal emulator
+super + Return
+	kitty
+
+# program launcher
+super + d
+	rofi -modi drun -show drun -line-padding 4 \
+                -columns 2 -padding 50 -hide-scrollbar -terminal alacritty \
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Fira Code 10"
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# focus the next/previous desktop in the current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# focus other monitor
+super + Tab
+    bspc monitor --focus next
+
+# ============================================================
+#                                                SUPER + ALPHA
+# ============================================================
+
+# swap the current node and the biggest window
+super + b
+	bspc node -s biggest.window
+
+# file manager
+super + e
+  thunar  
+
+# firefox
+super + w
+  firefox
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
+
+# alternate between floating and tiled
+super + o
+	bspc node -t {floating,tiled}
+
+# alternate between fullscreen and filed
+super + p
+    bspc node -t {fullscreen,tiled}
+
+
+# close window
+super + q
+    bspc node -c
+
+# rotate nodes
+super + r
+    bspc node @/ -C forward
+
+# set the window to tiled
+super + t
+	bspc node -t tiled
+
+# vscode
+super + v
+    codium
+
+# ============================================================
+#                                                  SUPER + ALT
+# ============================================================
+
+# open polybar config
+super + alt + p
+    codium ~/.config/polybar/config.ini
+
+# restart bspwm
+super + alt + r
+	bspc wm -r
+
+# open sxkhdrc config
+super + alt + s
+    codium ~/.config/sxhkd/sxhkdrc
+
+# ============================================================
+#                                              SUPER + CONTROL
+# ============================================================
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# show open windows
+super + ctrl + d
+	rofi -modi drun -show window -line-padding 4 \
+                -columns 2 -padding 50 -hide-scrollbar -terminal xfce4-terminal \
+                -show-icons -drun-icon-theme "Arc-X-D" -font "Droid Sans Regular 10"
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+
+# ============================================================
+#                                                SUPER + SHIFT
+# ============================================================
+
+# send window to other monitor
+super + shift + d
+    bspc node -m next
+
+#swap the node in the given direction
+super + shift + {Left,Down,Up,Right}
+    bspc node -s {west,south,north,east}
+
+# power-menu 
+super + shift + e
+     ~/.config/rofi/scripts/powermenu.sh
+
+# kill
+super + shift + q
+    bspc node -k
+ 
+# ============================================================
+#                                               NON-SUPER MISC
+# ============================================================
+
+# rotate focus around windows
+alt + Tab
+    bspc node -f next.local.!hidden.window
+
+# swap between monitors
+XF86Launch6
+    bspc node -m next
+
+# raise volume
+XF86AudioRaiseVolume
+  amixer -q set Master 5%+ unmute
+
+# lower volume
+XF86AudioLowerVolume
+  amixer -q set Master 5%- unmute
+
+# mute
+XF86AudioMute
+  amixer -D pulse sset Master toggle-mute   
+
+# toggle turn off and on screenpad
+XF86Launch7
+    echo {0,255} > '/sys/class/leds/asus::screenpad/brightness'
+    
+# Brightness up
+XF86MonBrightnessUp
+  xbacklight -inc 5
+
+# Brightness down
+XF86MonBrightnessDown
+  xbacklight -dec 5
+
+# Screenshot
+Print
+  flameshot gui
+
